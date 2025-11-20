@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Course Certificate - Jassif Team Institution</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Certificate Specific Styles */
+        .certificate-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        .certificate {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border: 20px solid #2c3e50;
+            border-radius: 15px;
+            padding: 3rem;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255,255,255,0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255,255,255,0.1) 0%, transparent 20%);
+        }
+
+        .certificate-border {
+            border: 2px solid #e74c3c;
+            padding: 2rem;
+            position: relative;
+            background: white;
+        }
+
+        .certificate-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .certificate-title {
+            font-size: 3.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .certificate-subtitle {
+            font-size: 1.5rem;
+            color: #e74c3c;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .certificate-body {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .certificate-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+
+        .student-name {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            font-weight: bold;
+            margin: 2rem 0;
+            padding: 1rem;
+            border-bottom: 3px solid #e74c3c;
+            display: inline-block;
+        }
+
+        .course-details {
+            font-size: 1.2rem;
+            color: #666;
+            margin: 1.5rem 0;
+        }
+
+        .certificate-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 2px solid #ddd;
+        }
+
+        .signature-section {
+            text-align: center;
+            flex: 1;
+        }
+
+        .signature-line {
+            width: 200px;
+            height: 2px;
+            background: #333;
+            margin: 0.5rem auto;
+        }
+
+        .signature-name {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 0.5rem;
+        }
+
+        .signature-title {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .certificate-date {
+            text-align: center;
+            flex: 1;
+        }
+
+        .date-display {
+            font-size: 1.1rem;
+            color: #333;
+            margin: 0.5rem 0;
+            font-weight: bold;
+        }
+
+        .institution-logo {
+            text-align: center;
+            flex: 1;
+        }
+
+        .logo-icon {
+            font-size: 3rem;
+            color: #e74c3c;
+            margin-bottom: 0.5rem;
+        }
+
+        .institution-name {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        /* Decorative Elements */
+        .corner-decoration {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 3px solid #e74c3c;
+        }
+
+        .top-left {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .top-right {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .bottom-left {
+            bottom: 20px;
+            left: 20px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .bottom-right {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .seal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.1;
+            font-size: 15rem;
+            color: #e74c3c;
+        }
+
+        /* Form Styles */
+        .certificate-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .generate-btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .print-btn {
+            background: linear-gradient(135deg, #27ae60, #229954);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .print-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4);
+        }
+
+        /* Action Buttons */
+        .certificate-actions {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .certificate {
+                padding: 1.5rem;
+                border-width: 10px;
+            }
+            
+            .certificate-border {
+                padding: 1rem;
+            }
+            
+            .certificate-title {
+                font-size: 2.5rem;
+            }
+            
+            .student-name {
+                font-size: 2rem;
+            }
+            
+            .certificate-footer {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .seal {
+                font-size: 8rem;
+            }
+            
+            .corner-decoration {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media print {
+            .certificate-form,
+            .certificate-actions,
+            .nav-tabs,
+            .home-icon {
+                display: none;
+            }
+            
+            .certificate {
+                border: none;
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+            }
+            
+            body {
+                background: white;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h1>Jassif Team <span>Institution</span></h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Top Navigation Tabs -->
+    <div class="nav-tabs">
+        <a href="SQL Quick Reference.html" class="nav-tab prev">
+            <i class="fas fa-arrow-left"></i>
+            <span>முந்தைய</span>
+        </a>
+        <div class="nav-tab" style="background: linear-gradient(135deg, #27ae60, #229954); color: white;">
+            <i class="fas fa-award"></i>
+            <span>சான்றிதழ்</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Certificate Form -->
+        <section class="content-section">
+            <h2>SQL பாடப்பிரிவு சான்றிதழ்</h2>
+            
+            <div class="certificate-form">
+                <div class="form-group">
+                    <label class="form-label" for="studentName">மாணவர் பெயர் *</label>
+                    <input type="text" id="studentName" class="form-input" placeholder="உங்கள் முழு பெயரை உள்ளிடவும்" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="completionDate">நிறைவு தேதி *</label>
+                    <input type="date" id="completionDate" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="courseName">பாடப்பிரிவு பெயர்</label>
+                    <input type="text" id="courseName" class="form-input" value="SQL Programming Mastery" readonly>
+                </div>
+                
+                <button class="generate-btn" onclick="generateCertificate()">
+                    <i class="fas fa-certificate"></i> சான்றிதழை உருவாக்கு
+                </button>
+            </div>
+        </section>
+
+        <!-- Certificate Display -->
+        <section class="content-section" id="certificate-display" style="display: none;">
+            <h2>உங்கள் சான்றிதழ்</h2>
+            
+            <div class="certificate-container">
+                <div class="certificate">
+                    <div class="corner-decoration top-left"></div>
+                    <div class="corner-decoration top-right"></div>
+                    <div class="corner-decoration bottom-left"></div>
+                    <div class="corner-decoration bottom-right"></div>
+                    
+                    <div class="seal">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    
+                    <div class="certificate-border">
+                        <div class="certificate-header">
+                            <div class="certificate-title">சான்றிதழ்</div>
+                            <div class="certificate-subtitle">பாடப்பிரிவு நிறைவு</div>
+                        </div>
+                        
+                        <div class="certificate-body">
+                            <div class="certificate-text">
+                                இந்தச் சான்றிதழ், கீழ்க்காணும் நபர் வெற்றிகரமாக நிறைவு செய்த
+                            </div>
+                            
+                            <div class="student-name" id="certStudentName">மாணவர் பெயர்</div>
+                            
+                            <div class="certificate-text">
+                                <strong>SQL Programming Mastery</strong> பாடப்பிரிவை வெற்றிகரமாக நிறைவு செய்தமைக்காக வழங்கப்படுகிறது.
+                            </div>
+                            
+                            <div class="course-details">
+                                இப்பாடப்பிரிவில் SQL-இன் அடிப்படைகள், மேம்பட்ட கேள்விகள், தரவுத்தள வடிவமைப்பு, 
+                                மற்றும் நடைமுறை திட்டங்கள் ஆகியவை அடங்கும்.
+                            </div>
+                            
+                            <div class="course-details">
+                                <strong>நிறைவு தேதி:</strong> <span id="certCompletionDate">தேதி</span>
+                            </div>
+                        </div>
+                        
+                        <div class="certificate-footer">
+                            <div class="signature-section">
+                                <div class="signature-line"></div>
+                                <div class="signature-name">தலைமை பயிற்றுவிப்பாளர்</div>
+                                <div class="signature-title">Jassif Team Institution</div>
+                            </div>
+                            
+                            <div class="institution-logo">
+                                <div class="logo-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div class="institution-name">Jassif Team Institution</div>
+                            </div>
+                            
+                            <div class="certificate-date">
+                                <div class="signature-line"></div>
+                                <div class="date-display" id="certIssueDate">வழங்கும் தேதி</div>
+                                <div class="signature-title">வழங்கிய தேதி</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="certificate-actions">
+                    <button class="print-btn" onclick="printCertificate()">
+                        <i class="fas fa-print"></i> சான்றிதழை அச்சிடு
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Jassif Team Institution</h3>
+                <p>Leading educational institution providing quality programming education in Tamil.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#certificate-display">சான்றிதழ்</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Location & Hours</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Jassif Team Institution. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Set default date to today
+        document.getElementById('completionDate').valueAsDate = new Date();
+
+        function generateCertificate() {
+            const studentName = document.getElementById('studentName').value;
+            const completionDate = document.getElementById('completionDate').value;
+            
+            if (!studentName || !completionDate) {
+                alert('தயவு செய்து மாணவர் பெயர் மற்றும் நிறைவு தேதியை உள்ளிடவும்');
+                return;
+            }
+            
+            // Format dates
+            const completionDateObj = new Date(completionDate);
+            const issueDateObj = new Date(); // Current date for issue
+            
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedCompletionDate = completionDateObj.toLocaleDateString('ta-IN', options);
+            const formattedIssueDate = issueDateObj.toLocaleDateString('ta-IN', options);
+            
+            // Update certificate content
+            document.getElementById('certStudentName').textContent = studentName;
+            document.getElementById('certCompletionDate').textContent = formattedCompletionDate;
+            document.getElementById('certIssueDate').textContent = formattedIssueDate;
+            
+            // Show certificate
+            document.getElementById('certificate-display').style.display = 'block';
+            
+            // Scroll to certificate
+            document.getElementById('certificate-display').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        function printCertificate() {
+            window.print();
+        }
+
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+
+    <!-- Home Button -->
+    <a href="index.html" class="home-icon">
+        <i class="fas fa-home"></i>
+    </a>
+</body>
+</html>

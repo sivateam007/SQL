@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Tutorial - Jassif Team Institution</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Index Page Specific Styles */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--git-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--git-color), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .category-title {
+            color: var(--dark);
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .lessons-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .lesson-item {
+            margin-bottom: 0.8rem;
+            padding: 0.8rem;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .lesson-item:hover {
+            background-color: #f8f9fa;
+            border-left-color: var(--git-color);
+        }
+
+        .lesson-link {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .lesson-link:hover {
+            color: var(--git-color);
+        }
+
+        .lesson-icon {
+            color: var(--git-color);
+            font-size: 0.9rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .welcome-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .welcome-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .action-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 12px 25px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .action-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .welcome-title {
+                font-size: 2rem;
+            }
+            
+            .quick-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .action-btn {
+                width: 200px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h1>SQL Tutorial <span>Jassif Team</span></h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Complete SQL Programming Tutorial</h2>
+            <p>Comprehensive SQL Learning in Tamil - From Basics to Advanced</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <h1 class="welcome-title">SQL Mastery Course</h1>
+            <p class="welcome-subtitle">Structured Query Language-ஐ தமிழில் முழுமையாக கற்றுக்கொள்ளுங்கள்</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">முழுமையான பாடங்கள்</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">பிரிவுகள்</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">தமிழில்</div>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <a href="SQL Tutorial.html" class="action-btn">
+                    <i class="fas fa-play"></i>
+                    தொடங்குவோம்
+                </a>
+                <a href="certificate.html" class="action-btn">
+                    <i class="fas fa-award"></i>
+                    சான்றிதழ் பெறுக
+                </a>
+                <a href="SQL Quick Reference.html" class="action-btn">
+                    <i class="fas fa-book"></i>
+                    விரைவுக் குறிப்பு
+                </a>
+            </div>
+        </section>
+
+        <!-- SQL Basics & Introduction -->
+        <section class="content-section">
+            <h2>SQL Basics & Introduction</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3 class="category-title">அடிப்படைகள்</h3>
+                    </div>
+                    <ul class="lessons-list">
+                        <li class="lesson-item">
+                            <a href="SQL Tutorial.html" class="lesson-link">
+                                <i class="fas fa-database lesson-icon"></i>
+                                SQL Tutorial
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="Introduction to SQL.html" class="lesson-link">
+                                <i class="fas fa-info-circle lesson-icon"></i>
+                                Introduction to SQL
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL Syntax.html" class="lesson-link">
+                                <i class="fas fa-code lesson-icon"></i>
+                                SQL Syntax
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SQL SELECT Statements -->
+        <section class="content-section">
+            <h2>SQL SELECT Statements</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3 class="category-title">தரவு எடுத்தல்</h3>
+                    </div>
+                    <ul class="lessons-list">
+                        <li class="lesson-item">
+                            <a href="SQL SELECT Statement.html" class="lesson-link">
+                                <i class="fas fa-mouse-pointer lesson-icon"></i>
+                                SQL SELECT Statement
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL SELECT DISTINCT Statement.html" class="lesson-link">
+                                <i class="fas fa-filter lesson-icon"></i>
+                                SQL SELECT DISTINCT
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL WHERE Clause.html" class="lesson-link">
+                                <i class="fas fa-search lesson-icon"></i>
+                                SQL WHERE Clause
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL ORDER BY Keyword.html" class="lesson-link">
+                                <i class="fas fa-sort lesson-icon"></i>
+                                SQL ORDER BY
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL TOP, LIMIT, FETCH FIRST or ROWNUM Clause.html" class="lesson-link">
+                                <i class="fas fa-chart-line lesson-icon"></i>
+                                SQL TOP/LIMIT Clause
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SQL Operators -->
+        <section class="content-section">
+            <h2>SQL Operators</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <h3 class="category-title">தர்க்க செயலிகள்</h3>
+                    </div>
+                    <ul class="lessons-list">
+                        <li class="lesson-item">
+                            <a href="SQL AND Operator.html" class="lesson-link">
+                                <i class="fas fa-plus-circle lesson-icon"></i>
+                                SQL AND Operator
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL OR Operator.html" class="lesson-link">
+                                <i class="fas fa-sliders-h lesson-icon"></i>
+                                SQL OR Operator
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL NOT Operator.html" class="lesson-link">
+                                <i class="fas fa-ban lesson-icon"></i>
+                                SQL NOT Operator
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                        <h3 class="category-title">மேம்பட்ட செயலிகள்</h3>
+                    </div>
+                    <ul class="lessons-list">
+                        <li class="lesson-item">
+                            <a href="SQL LIKE Operator.html" class="lesson-link">
+                                <i class="fas fa-heart lesson-icon"></i>
+                                SQL LIKE Operator
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL Wildcards.html" class="lesson-link">
+                                <i class="fas fa-asterisk lesson-icon"></i>
+                                SQL Wildcards
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL IN Operator.html" class="lesson-link">
+                                <i class="fas fa-list lesson-icon"></i>
+                                SQL IN Operator
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL BETWEEN Operator.html" class="lesson-link">
+                                <i class="fas fa-arrows-alt-h lesson-icon"></i>
+                                SQL BETWEEN Operator
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL Aliases.html" class="lesson-link">
+                                <i class="fas fa-tag lesson-icon"></i>
+                                SQL Aliases
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SQL Data Manipulation -->
+        <section class="content-section">
+            <h2>தரவு கையாளுதல்</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <h3 class="category-title">தரவு மாற்றம்</h3>
+                    </div>
+                    <ul class="lessons-list">
+                        <li class="lesson-item">
+                            <a href="SQL INSERT INTO Statement.html" class="lesson-link">
+                                <i class="fas fa-plus lesson-icon"></i>
+                                SQL INSERT INTO
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL UPDATE Statement.html" class="lesson-link">
+                                <i class="fas fa-sync-alt lesson-icon"></i>
+                                SQL UPDATE
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL DELETE Statement.html" class="lesson-link">
+                                <i class="fas fa-trash lesson-icon"></i>
+                                SQL DELETE
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL NULL Values.html" class="lesson-link">
+                                <i class="fas fa-question-circle lesson-icon"></i>
+                                SQL NULL Values
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL NULL Functions.html" class="lesson-link">
+                                <i class="fas fa-question lesson-icon"></i>
+                                SQL NULL Functions
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SQL Functions -->
+        <section class="content-section">
+            <h2>SQL Functions</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3 class="category-title">கணித செயல்பாடுகள்</h3>
+                    </div>
+                    <ul class="lessons-list">
+                        <li class="lesson-item">
+                            <a href="SQL Aggregate Functions.html" class="lesson-link">
+                                <i class="fas fa-functions lesson-icon"></i>
+                                SQL Aggregate Functions
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL MIN() and MAX() Functions.html" class="lesson-link">
+                                <i class="fas fa-arrows-alt-v lesson-icon"></i>
+                                SQL MIN() and MAX()
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL COUNT() Function.html" class="lesson-link">
+                                <i class="fas fa-hashtag lesson-icon"></i>
+                                SQL COUNT() Function
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL SUM() Function.html" class="lesson-link">
+                                <i class="fas fa-plus-square lesson-icon"></i>
+                                SQL SUM() Function
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL AVG() Function.html" class="lesson-link">
+                                <i class="fas fa-divide lesson-icon"></i>
+                                SQL AVG() Function
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SQL Joins -->
+        <section class="content-section">
+            <h2>SQL Joins</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <h3 class="category-title">அட்டவணை இணைப்புகள்</h3>
+                    </div>
+                    <ul class="lessons-list">
+                        <li class="lesson-item">
+                            <a href="SQL Joins.html" class="lesson-link">
+                                <i class="fas fa-link lesson-icon"></i>
+                                SQL Joins
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL INNER JOIN.html" class="lesson-link">
+                                <i class="fas fa-handshake lesson-icon"></i>
+                                SQL INNER JOIN
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL LEFT JOIN Keyword.html" class="lesson-link">
+                                <i class="fas fa-arrow-left lesson-icon"></i>
+                                SQL LEFT JOIN
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL RIGHT JOIN Keyword.html" class="lesson-link">
+                                <i class="fas fa-arrow-right lesson-icon"></i>
+                                SQL RIGHT JOIN
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL FULL OUTER JOIN Keyword.html" class="lesson-link">
+                                <i class="fas fa-arrows-alt-h lesson-icon"></i>
+                                SQL FULL OUTER JOIN
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL Self Join.html" class="lesson-link">
+                                <i class="fas fa-circle lesson-icon"></i>
+                                SQL Self Join
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced SQL -->
+        <section class="content-section">
+            <h2>மேம்பட்ட SQL</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <h3 class="category-title">மேம்பட்ட கூற்றுகள்</h3>
+                    </div>
+                    <ul class="lessons-list">
+                        <li class="lesson-item">
+                            <a href="SQL UNION Operator.html" class="lesson-link">
+                                <i class="fas fa-object-group lesson-icon"></i>
+                                SQL UNION
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL UNION ALL Operator.html" class="lesson-link">
+                                <i class="fas fa-object-ungroup lesson-icon"></i>
+                                SQL UNION ALL
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL GROUP BY Statement.html" class="lesson-link">
+                                <i class="fas fa-users lesson-icon"></i>
+                                SQL GROUP BY
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL HAVING Clause.html" class="lesson-link">
+                                <i class="fas fa-filter lesson-icon"></i>
+                                SQL HAVING
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL EXISTS Operator.html" class="lesson-link">
+                                <i class="fas fa-check-circle lesson-icon"></i>
+                                SQL EXISTS
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL ANY and ALL Operators.html" class="lesson-link">
+                                <i class="fas fa-infinity lesson-icon"></i>
+                                SQL ANY and ALL
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3 class="category-title">மேம்பட்ட அம்சங்கள்</h3>
+                    </div>
+                    <ul class="lessons-list">
+                        <li class="lesson-item">
+                            <a href="SQL SELECT INTO Statement.html" class="lesson-link">
+                                <i class="fas fa-copy lesson-icon"></i>
+                                SQL SELECT INTO
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL INSERT INTO SELECT Statement.html" class="lesson-link">
+                                <i class="fas fa-paste lesson-icon"></i>
+                                SQL INSERT INTO SELECT
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL CASE Expression.html" class="lesson-link">
+                                <i class="fas fa-code-branch lesson-icon"></i>
+                                SQL CASE
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL Stored Procedures for SQL Server.html" class="lesson-link">
+                                <i class="fas fa-cube lesson-icon"></i>
+                                SQL Stored Procedures
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL Comments.html" class="lesson-link">
+                                <i class="fas fa-comment lesson-icon"></i>
+                                SQL Comments
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL Operators.html" class="lesson-link">
+                                <i class="fas fa-calculator lesson-icon"></i>
+                                SQL Operators
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SQL Database Operations -->
+        <section class="content-section">
+            <h2>தரவுத்தள செயல்பாடுகள்</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="category-title">தரவுத்தள நிர்வாகம்</h3>
+                    </div>
+                    <ul class="lessons-list">
+                        <li class="lesson-item">
+                            <a href="SQL CREATE DATABASE Statement.html" class="lesson-link">
+                                <i class="fas fa-plus-circle lesson-icon"></i>
+                                CREATE DATABASE
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL DROP DATABASE Statement.html" class="lesson-link">
+                                <i class="fas fa-trash-alt lesson-icon"></i>
+                                DROP DATABASE
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL BACKUP DATABASE for SQL Server.html" class="lesson-link">
+                                <i class="fas fa-save lesson-icon"></i>
+                                BACKUP DATABASE
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL CREATE TABLE Statement.html" class="lesson-link">
+                                <i class="fas fa-table lesson-icon"></i>
+                                CREATE TABLE
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL DROP TABLE Statement.html" class="lesson-link">
+                                <i class="fas fa-times-circle lesson-icon"></i>
+                                DROP TABLE
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL ALTER TABLE Statement.html" class="lesson-link">
+                                <i class="fas fa-edit lesson-icon"></i>
+                                ALTER TABLE
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SQL Constraints -->
+        <section class="content-section">
+            <h2>SQL Constraints</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3 class="category-title">தரவு கட்டுப்பாடுகள்</h3>
+                    </div>
+                    <ul class="lessons-list">
+                        <li class="lesson-item">
+                            <a href="SQL Constraints.html" class="lesson-link">
+                                <i class="fas fa-lock lesson-icon"></i>
+                                SQL Constraints
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL NOT NULL Constraint.html" class="lesson-link">
+                                <i class="fas fa-ban lesson-icon"></i>
+                                NOT NULL Constraint
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL UNIQUE Constraint.html" class="lesson-link">
+                                <i class="fas fa-fingerprint lesson-icon"></i>
+                                UNIQUE Constraint
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL PRIMARY KEY Constraint.html" class="lesson-link">
+                                <i class="fas fa-key lesson-icon"></i>
+                                PRIMARY KEY
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL FOREIGN KEY Constraint.html" class="lesson-link">
+                                <i class="fas fa-link lesson-icon"></i>
+                                FOREIGN KEY
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL CHECK Constraint.html" class="lesson-link">
+                                <i class="fas fa-check-square lesson-icon"></i>
+                                CHECK Constraint
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL DEFAULT Constraint.html" class="lesson-link">
+                                <i class="fas fa-cog lesson-icon"></i>
+                                DEFAULT Constraint
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SQL Advanced Features -->
+        <section class="content-section">
+            <h2>மேம்பட்ட அம்சங்கள்</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3 class="category-title">கூடுதல் அம்சங்கள்</h3>
+                    </div>
+                    <ul class="lessons-list">
+                        <li class="lesson-item">
+                            <a href="SQL CREATE INDEX Statement.html" class="lesson-link">
+                                <i class="fas fa-search-plus lesson-icon"></i>
+                                CREATE INDEX
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL AUTO INCREMENT Field.html" class="lesson-link">
+                                <i class="fas fa-sort-numeric-up lesson-icon"></i>
+                                AUTO INCREMENT
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL Working With Dates.html" class="lesson-link">
+                                <i class="fas fa-calendar-alt lesson-icon"></i>
+                                Working With Dates
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL Views.html" class="lesson-link">
+                                <i class="fas fa-eye lesson-icon"></i>
+                                SQL Views
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL Injection.html" class="lesson-link">
+                                <i class="fas fa-shield-alt lesson-icon"></i>
+                                SQL Injection
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL Hosting.html" class="lesson-link">
+                                <i class="fas fa-server lesson-icon"></i>
+                                SQL Hosting
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SQL References -->
+        <section class="content-section">
+            <h2>SQL References</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3 class="category-title">குறிப்புகள்</h3>
+                    </div>
+                    <ul class="lessons-list">
+                        <li class="lesson-item">
+                            <a href="SQL Data Types for MySQL, SQL Server, and MS Access.html" class="lesson-link">
+                                <i class="fas fa-list-alt lesson-icon"></i>
+                                SQL Data Types
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL Keywords Reference.html" class="lesson-link">
+                                <i class="fas fa-keyboard lesson-icon"></i>
+                                SQL Keywords
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="MySQL Functions.html" class="lesson-link">
+                                <i class="fas fa-function lesson-icon"></i>
+                                MySQL Functions
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL Server Functions.html" class="lesson-link">
+                                <i class="fas fa-server lesson-icon"></i>
+                                SQL Server Functions
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="MS Access Functions.html" class="lesson-link">
+                                <i class="fas fa-window-restore lesson-icon"></i>
+                                MS Access Functions
+                            </a>
+                        </li>
+                        <li class="lesson-item">
+                            <a href="SQL Quick Reference.html" class="lesson-link">
+                                <i class="fas fa-book lesson-icon"></i>
+                                SQL Quick Reference
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <div></div> <!-- Empty div for spacing -->
+            <a href="SQL Tutorial.html" class="nav-tab next">
+                <span>தொடங்குவோம்</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Jassif Team Institution</h3>
+                <p>Leading educational institution providing quality programming education in Tamil.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">முகப்பு</a></li>
+                    <li><a href="certificate.html">சான்றிதழ்</a></li>
+                    <li><a href="SQL Quick Reference.html">விரைவுக் குறிப்பு</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Location & Hours</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Jassif Team Institution. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all content sections for animation
+        document.querySelectorAll('.content-section, .category-card').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+    <!-- Home Button -->
+    <a href="index.html" class="home-icon">
+        <i class="fas fa-home"></i>
+    </a>
+</body>
+</html>
